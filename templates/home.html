@@ -5,6 +5,10 @@
         <h1>Welcome to MyFlaskApp!</h1>
         <p class="lead">A simple project built with the Python Flask framework, following
             along the "Python Flask From Scratch" youtube series.</p>
+        {% if session.logged_in == NULL %}
+            <a href="/register" class="btn btn-dark">Register</a>
+            <a href="/login" class="btn btn-dark">Log In</a>
+        {% endif %}
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
@@ -41,7 +45,7 @@ function rock(x, y) {
         line(0 - 13, 0 + 13,
              0 - 23, 0 + 23);
         if(this.drawThrust) {
-            stroke(color(255, 50, 00));
+            stroke(color(255, 50, 100));
             line (3, 19, 0, 26);
             line (-3, 19, 0, 26);
             line(0, 20, 0, 26);
@@ -91,7 +95,7 @@ function rock(x, y) {
 
     this.bounceY = function() {
         this.velocity.y = -this.velocity.y*.75;
-        this.position.y = 325 - 26;
+        this.position.y -= 3;
     }
     this.bounceX = function() {
         this.velocity.x = -this.velocity.x*.75;
@@ -100,12 +104,12 @@ function rock(x, y) {
 }
 var canvas;
 function setup() {
-    canvas = createCanvas(windowWidth,400);
-    rock = new rock(width/2,250);
+    canvas = createCanvas(windowWidth,windowHeight/2);
+    rock = new rock(width/2,height/2);
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, 400);
+  resizeCanvas(windowWidth, windowHeight/2);
   canvas.position(windowWidth/4, windowHeight/4);
 }
 
@@ -117,9 +121,9 @@ function draw() {
     rock.fly();
     rock.update();
     stroke(color(0, 100, 200));
-    strokeWeight(4);
-    line (0,325, width, 325);
-    if(rock.position.y + 26 > 325)
+    strokeWeight(16);
+    line (0, height-75, width, height-75);
+    if(rock.position.y + 26 > height-75)
         rock.bounceY();
     if(rock.position.x < 0)
        rock.position.x = width;

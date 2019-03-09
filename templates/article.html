@@ -1,12 +1,10 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    {% set articleID = id | int %}
-    {% for article in articles %}
-        {% if article.id == articleID %}
-            <h2>{{ article.title }}</h2>
-            <p>{{ article.body }}</p>
-        {% endif %}
-    {% endfor %}
-
+    <h1>{{ article.title }}</h1>
+    <small>Written by {{ article.author }} on {{ article.create_date }}</small>
+    <hr>
+    <div>
+        {{ article.body | safe }}
+    </div>
 {% endblock %}
