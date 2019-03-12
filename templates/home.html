@@ -6,8 +6,8 @@
         <p class="lead">A simple project built with the Python Flask framework, following
             along the "Python Flask From Scratch" youtube series.</p>
         {% if session.logged_in == NULL %}
-            <a href="/register" class="btn btn-dark">Register</a>
-            <a href="/login" class="btn btn-dark">Log In</a>
+            <a href="/register" class="btn btn-primary">Register</a>
+            <a href="/login" class="btn btn-success">Log In</a>
         {% endif %}
     </div>
 
@@ -65,7 +65,7 @@ function rock(x, y) {
 
 
     this.fly = function() {
-        var power = .25;
+        var power = .55;
         var rotationPower = 3;
 
         if(keyIsDown(UP_ARROW)) {
@@ -109,7 +109,7 @@ function setup() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight/2);
+  resizeCanvas(windowWidth-20, (windowHeight)/1.5);
   canvas.position(windowWidth/4, windowHeight/4);
 }
 
